@@ -1,5 +1,3 @@
-app.registerTemplate('4chan', 'post')
-
 class app.views.Post extends Backbone.View
   avatar: -> "https://graph.facebook.com/#{@uid()}/picture"
   uid: -> @model.get('from')?['id']
