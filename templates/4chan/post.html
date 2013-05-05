@@ -42,13 +42,14 @@
         {{message}}
       </blockquote>
     </div>
+    <span class="summary desktop">{{#hiddenContent}}{{hiddenCommentCount}} comments and {{hiddenLikeCount}} likes omitted. {{/hiddenContent}}Click
+      <a href="#" class="replylink">here
+      </a> to view.
+    </span>
   </div>
-  <span class="summary desktop">47 posts and 3 image replies omitted. Click
-    <a href="#" class="replylink">here
-    </a> to view.
-  </span>
-  </div>
+  {{#commentViews}}{{{.}}}{{/commentViews}}
+</div>
+</div>
 
-  </div>
 </div>
 <hr style='clear:both'>

@@ -1,6 +1,4 @@
-$.get 'templates/4chan/post.html', (data) ->
-  ich.addTemplate('post', data)
-
+app.registerTemplate('4chan', 'post')
 class app.views.Post extends Backbone.View
 
   render: ->
