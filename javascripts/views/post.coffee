@@ -18,6 +18,16 @@ class app.views.Post extends Backbone.View
       comments.push view.render().html()
     comments
 
+  likes: ->
+    return [] unless @model.get('likes')?
+
+    likes = []
+    for likeData in @model.get('likes').data
+      like = new app.Post(likeData)
+      view = new app.views.Like(model: like)
+      likes.push view.render().html()
+    likes
+
   render: ->
     html = ich.post(@)
     @$el.html(html)

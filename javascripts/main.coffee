@@ -7,7 +7,7 @@ registerTemplate = (service, name) ->
     ich.addTemplate(name, data)
 
 app.loadTheme = (service) ->
-  for view in ['post', 'comment']
+  for view in ['post', 'comment', 'like']
     registerTemplate(service, view)
 
 app.loadTheme('4chan')
