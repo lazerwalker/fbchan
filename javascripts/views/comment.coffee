@@ -1,8 +1,8 @@
 app.registerTemplate('4chan', 'comment')
 
-class app.views.Comment extends Backbone.View
+class app.views.Comment extends app.views.Post
 
   render: ->
-    html = ich.comment(@model)
+    html = ich.comment(@)
     @$el.html(html)
 
