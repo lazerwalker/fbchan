@@ -3,6 +3,7 @@ class app.views.PostList extends Backbone.View
 
   render: =>
     @$el.html('')
-    for view in _(@model.models).pluck('view')
+    for model in @model.models
+      view = new app.views.Post({model})
       view.render().appendTo(@el)
 

@@ -10,7 +10,9 @@ window.fbAsyncInit = ->
       if response.status is 'connected'
         list = new app.PostList
         list.fetch
-          success: list.view.render
+          success: ->
+            view = new app.views.PostList({model:list})
+            view.render()
 
       else if response.status is 'not_authorized'
         FB.login()
