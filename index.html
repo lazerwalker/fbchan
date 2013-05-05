@@ -8,13 +8,28 @@
   <script src='external/javascripts/ICanHaz.js'></script>
 
   <script src='javascripts/compiled/main.js'></script>
+  <script src='javascripts/compiled/fb.js'></script>
 
   <script src='javascripts/compiled/models/post.js'></script>
+  <script src='javascripts/compiled/models/post_list.js'></script>
 
   <script src='javascripts/compiled/views/post.js'></script>
+  <script src='javascripts/compiled/views/post_list.js'></script>
 </head>
 <body>
+  <div id="fb-root"></div>
   <h1>Hi Mom</h1>
 
+  <script type='text/javascript'>
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/en_US/all/debug.js";
+     // js.src = "//connect.facebook.net/en_US/all.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+  </script>
 </body>
+
 </html>
