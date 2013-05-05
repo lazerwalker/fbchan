@@ -1,0 +1,12 @@
+{
+  "name": "socialnetwork.ly",
+  "version": "0.0.1",
+  "description": "Synergizing social media paradigms",
+  "jam": {
+    "dependencies": {
+      "jquery": "2.0.0",
+      "backbone": "1.0.0",
+      "underscore": "1.4.4"
+    }
+  }
+}
