@@ -3,7 +3,9 @@
   var bootstrap,
     _this = this;
 
-  window.app = {};
+  window.app = {
+    views: {}
+  };
 
   $.get('templates/4chan/site.html?callback=', function(data) {
     ich.addTemplate('site', data);

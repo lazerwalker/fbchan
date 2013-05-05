@@ -1,4 +1,6 @@
-window.app = {}
+window.app = {
+  views: {}
+}
 
 $.get 'templates/4chan/site.html?callback=', (data) =>
   ich.addTemplate 'site', data
