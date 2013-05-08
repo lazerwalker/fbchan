@@ -2,7 +2,8 @@ class app.views.Post extends Backbone.View
   avatar: -> "https://graph.facebook.com/#{@uid()}/picture"
   uid: -> @model.get('from')?['id']
   message: -> @model.get('message') || ""
-  name: -> @model.get('from')?['name']
+  name: -> @model.get('from')?.name
+  recipient: -> @model.get('to')?.data[0].name
   timestamp: -> @model.get('created_time')
 
   commentCount: -> @model.get('comments').count
