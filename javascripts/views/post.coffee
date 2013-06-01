@@ -5,6 +5,7 @@ class app.views.Post extends Backbone.View
   name: -> @model.get('from')?.name
   recipient: -> @model.get('to')?.data[0].name
   timestamp: -> @model.get('created_time')
+  picture: -> @model.get('picture')
 
   commentCount: -> @model.get('comments').count
   likeCount: -> @model.get('likes').count

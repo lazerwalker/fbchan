@@ -23,3 +23,4 @@ window.fbAsyncInit = ->
       success: ->
         view = new app.views.PostList({model:list})
         view.render()
+    window.list = list
