@@ -5,16 +5,21 @@ class app.views.Post extends Backbone.View
   name: -> @model.get('from')?.name
   recipient: -> @model.get('to')?.data[0].name
   timestamp: -> @model.get('created_time')
-  picture: -> @model.get('picture')
+  picture: ->
+    pic = @model.get('picture')
+    if pic?
+      pic.replace(/_[a-z]\.jpg$/, '_n.jpg')
 
   commentCount: -> @model.get('comments').count
   likeCount: -> @model.get('likes').count
 
   comments: ->
-    return [] if @model.get('comments').count is 0
+    commentObj = @model.get('comments')
+    unless commentObj.count > 0 and commentObj?.data
+      return []
 
     comments = []
-    for commentData in @model.get('comments').data
+    for commentData in commentObj.data
       comment = new app.Post(commentData)
       view = new app.views.Comment(model: comment)
       comments.push view.render().html()
