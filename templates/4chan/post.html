@@ -40,6 +40,12 @@
       </div>
       <blockquote class="postMessage">
         {{#picture}}<img src='{{picture}}' alt='{{message}}'/>{{/picture}}
+
+        {{#link}}
+          <a href='{{link}}' alt='{{linkName}}'>{{linkName}}</a>
+          <br/>
+          {{#description}}{{description}}{{/description}}
+        {{/link}}
         <br/>
         {{message}}
       </blockquote>

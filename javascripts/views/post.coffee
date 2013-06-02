@@ -10,6 +10,14 @@ class app.views.Post extends Backbone.View
     if pic?
       pic.replace(/_[a-z]\.jpg$/, '_n.jpg')
 
+  link: ->
+    if @model.get('link')
+      return {
+        link: @model.get('link')
+        linkName: @model.get('name')
+        description: @model.get('description')
+      }
+
   commentCount: -> @model.get('comments').count
   likeCount: -> @model.get('likes').count
 
