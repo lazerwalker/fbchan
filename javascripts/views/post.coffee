@@ -43,6 +43,17 @@ class app.views.Post extends Backbone.View
       likes.push view.render().html()
     likes
 
+  likeable: ->
+    like = _(@model.get('likes')?['data']).find( (obj) -> obj.id is app.me?.id )
+    return not like?
+
+  initialize: ->
+    @$el.on 'click', '.like', =>
+      @model.like()
+
+    @model.on 'change', =>
+      @render()
+
   render: ->
     return if !@message()
 

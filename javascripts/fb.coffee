@@ -10,6 +10,7 @@ $(document).on 'templatesLoaded', ->
     handleLogin = (response) ->
       if response.status is 'connected'
         fetchList()
+        app.me = new app.User()
       else if response.status is 'not_authorized'
         FB.login()
       else
