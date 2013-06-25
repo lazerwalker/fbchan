@@ -43,6 +43,10 @@ class app.views.Post extends Backbone.View
       likes.push view.render().html()
     likes
 
+  commentsAndLikes: ->
+    content = @comments().concat @likes()
+    content[0...3]
+
   likeable: ->
     like = _(@model.get('likes')?['data']).find( (obj) -> obj.id is app.me?.id )
     return not like?
