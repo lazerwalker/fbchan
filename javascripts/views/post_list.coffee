@@ -7,3 +7,5 @@ class app.views.PostList extends Backbone.View
       $view = new app.views.Post({model}).render()
       $view.appendTo(@el) if $view?
 
+    $('.dateTime').timeago()
+
