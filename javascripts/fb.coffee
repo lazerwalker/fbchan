@@ -1,19 +1,13 @@
 $(document).on 'templatesLoaded', ->
-  if Modernizr.localstorage
-    lastResponse = JSON.parse(localStorage['list'])
-    list = new app.PostList(lastResponse)
-
-    view = new app.views.PostList({model:list})
-    _.defer -> view.render()
+  app.showLoading()
 
   window.fbAsyncInit = ->
     handleLogin = (response) ->
       if response.status is 'connected'
         fetchList()
         app.me = new app.User()
-      else if response.status is 'not_authorized'
-        FB.login()
       else
+        # TODO: show landing page with 'login' button
         FB.login()
 
     FB.init(
