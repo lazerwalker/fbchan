@@ -14,12 +14,14 @@ checkIfFinishedLoading = ->
   if networkCount is 0
     $(document).trigger('templatesLoaded')
 
-app.showLoading = ->
-  $("#content").html(ich.loading())
+app.showLoading = -> app.showStatic('loading')
+app.showIntro = -> app.showStatic('intro')
 
+app.showStatic = (name) ->
+  $("#content").html(ich[name]?())
 
 app.loadTheme = (service) ->
-  for view in ['post', 'comment', 'like', 'loading']
+  for view in ['post', 'comment', 'like', 'loading', 'intro']
     networkCount++
     registerTemplate(service, view)
 
