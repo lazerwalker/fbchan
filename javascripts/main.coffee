@@ -15,6 +15,7 @@ checkIfFinishedLoading = ->
     $(document).trigger('templatesLoaded')
 
 app.showLoading = -> app.showStatic('loading')
+app.showPartialLoading = -> $("#content").prepend(ich.inlineLoading())
 app.showIntro = -> app.showStatic('intro')
 
 app.showStatic = (name) ->
@@ -31,7 +32,7 @@ app.params = ->
 
 
 app.loadTheme = (service) ->
-  for view in ['post', 'comment', 'like', 'loading', 'intro']
+  for view in ['post', 'comment', 'like', 'loading', 'intro', 'inlineLoading']
     networkCount++
     registerTemplate(service, view)
 
@@ -47,12 +48,17 @@ app.loadTheme = (service) ->
 app.loadTheme('4chan')
 
 app.renderList = ->
-  app.showLoading()
-  list = new app.PostList
-  list.fetch
+  if app.list?
+    app.list.view.render()
+    app.showPartialLoading()
+  else
+    app.showLoading()
+    app.list = new app.PostList
+    app.list.view = new app.views.PostList({model:app.list})
+
+  app.list.fetch
     success: ->
-      view = new app.views.PostList({model:list})
-      view.render()
+      app.list.view.render()
 
 app.renderItem = (item) ->
   view = new app.views.Post
