@@ -66,17 +66,17 @@ class app.views.Post extends Backbone.View
     for key, value of options
       @[key] = value
 
+  beforeRender: ->
+    # Implement this in your subclass for specific render behavior
+
   render: ->
     return if !@message()
+    @beforeRender()
 
     html = ich.post(@)
     @$el.html(html)
-    $('.dateTime').timeago()
 
-    if @isDetailView
-      $parent = $("#content")
-      $parent.html('')
-      @$el.appendTo($parent)
+    $('.dateTime').timeago()
 
     return @$el
 

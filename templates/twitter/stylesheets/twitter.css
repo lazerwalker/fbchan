@@ -1,0 +1,8 @@
+#global-actions {
+  position: absolute;
+  top: 0;
+}
+
+.pull-right {
+  display: none;
+}

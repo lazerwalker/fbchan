@@ -72,4 +72,4 @@ app.renderItemWithId = (id) ->
   item.fetch
     success: -> app.renderItem(item)
 
-app.loadTheme('4chan')
+app.loadTheme('Twitter')
