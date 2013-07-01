@@ -14,6 +14,22 @@ checkIfFinishedLoading = ->
   if networkCount is 0
     $(document).trigger('templatesLoaded')
 
+app.loadTheme = (service) ->
+  for view in ['post', 'comment', 'like', 'loading', 'intro', 'inlineLoading']
+    networkCount++
+    registerTemplate(service, view)
+
+  networkCount++
+  $.get "templates/#{service.toLowerCase()}/site.html", (data) =>
+    ich.addTemplate 'site', data
+    $("body").html(ich.site)
+    checkIfFinishedLoading()
+
+    $.get "templates/#{service.toLowerCase()}/stylesheets.html", (data) =>
+      $('head').append(data)
+
+  app.theme = service
+
 app.showLoading = -> app.showStatic('loading')
 app.showPartialLoading = -> $("#content").prepend(ich.inlineLoading())
 app.showIntro = -> app.showStatic('intro')
@@ -31,22 +47,6 @@ app.params = ->
   params
 
 
-app.loadTheme = (service) ->
-  for view in ['post', 'comment', 'like', 'loading', 'intro', 'inlineLoading']
-    networkCount++
-    registerTemplate(service, view)
-
-  networkCount++
-  $.get "templates/#{service}/site.html", (data) =>
-    ich.addTemplate 'site', data
-    $("body").html(ich.site)
-    checkIfFinishedLoading()
-
-    $.get "templates/#{service}/stylesheets.html", (data) =>
-      $('head').append(data)
-
-app.loadTheme('4chan')
-
 app.renderList = ->
   if app.list?
     app.list.view.render()
@@ -61,7 +61,7 @@ app.renderList = ->
       app.list.view.render()
 
 app.renderItem = (item) ->
-  view = new app.views.Post
+  view = new app.views.Post[app.theme]
     model: item
     isDetailView: true
   view.render()
@@ -71,3 +71,5 @@ app.renderItemWithId = (id) ->
   item = new app.Post(id: id)
   item.fetch
     success: -> app.renderItem(item)
+
+app.loadTheme('4chan')
