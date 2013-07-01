@@ -55,7 +55,7 @@
 
       <ul class="tweet-actions js-actions">
         <li class="action-reply-container">
-          <a role="button" class="with-icn js-action-reply" data-modal="tweet-reply" href="#">
+          <a role="button" class="with-icn js-action-reply" data-modal="tweet-reply" href="{{commentLink}}" target="_blank">
             <span class="icon sm-reply"></span>
             <b>Reply</b>
           </a>
@@ -65,26 +65,20 @@
             <span class="icon sm-rt"></span>
             <b>Retweet</b>
           </a>
-          <a role="button" class="with-icn undo-retweet" data-modal="tweet-retweet" href="#" title="Undo retweet">
-            <span class="icon sm-rt"></span>
-            <b>Retweeted</b>
-          </a>
-        </li>
-        <li class="action-del-container">
-          <a role="button" class="with-icn js-action-del" href="#">
-            <span class="icon sm-trash"></span>
-            <b>Delete</b>
-          </a>
         </li>
         <li class="action-fav-container js-toggle-state js-toggle-fav">
-          <a role="button" class="with-icn favorite" href="#">
+          {{#likeable}}
+          <a role="button" class="with-icn favorite like" href="#">
             <span class="icon sm-fav"></span>
             <b>Favorite</b>
           </a>
-          <a role="button" class="with-icn unfavorite" href="#" title="Undo favorite">
+          {{/likeable}}
+          {{^likeable}}
+          <a role="button" class="with-icn unfavorite like" href="#" title="Undo favorite">
             <span class="icon sm-fav"></span>
             <b>Favorited</b>
           </a>
+          {{/likeable}}
         </li>
 
         <li class="more-tweet-actions">

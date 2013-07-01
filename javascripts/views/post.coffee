@@ -1,5 +1,8 @@
 class app.views.Post extends Backbone.View
-  sharedEvents: { 'click .permalink' : "clickPermalink" }
+  sharedEvents:
+    'click .permalink' : "clickPermalink"
+    'click .like' : "clickLike"
+
   events: -> @sharedEvents
 
   avatar: -> "https://graph.facebook.com/#{@uid()}/picture"
@@ -57,9 +60,6 @@ class app.views.Post extends Backbone.View
     return not like?
 
   initialize: (options) ->
-    @$el.on 'click', '.like', =>
-      @model.like()
-
     @model.on 'change', =>
       @render()
 
@@ -79,6 +79,10 @@ class app.views.Post extends Backbone.View
     $('.dateTime').timeago()
 
     return @$el
+
+  clickLike: =>
+    @model.like()
+    return false
 
   clickPermalink: =>
     app.renderItem(@model)

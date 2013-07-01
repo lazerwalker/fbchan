@@ -6,3 +6,7 @@
 .pull-right {
   display: none;
 }
+
+.unfavorite {
+  display: inline !important;
+}
