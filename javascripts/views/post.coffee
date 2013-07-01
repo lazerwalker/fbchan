@@ -1,4 +1,6 @@
 class app.views.Post extends Backbone.View
+  events: { 'click .permalink' : "clickPermalink" }
+
   avatar: -> "https://graph.facebook.com/#{@uid()}/picture"
   id: -> @model.get('id')
   uid: -> @model.get('from')?['id']
@@ -98,10 +100,14 @@ class app.views.Post extends Backbone.View
     $('.dateTime').timeago()
 
     if @isDetailView
-      console.log "HI!"
       $parent = $("#content")
       $parent.html('')
       @$el.appendTo($parent)
 
     return @$el
+
+  clickPermalink: =>
+    app.renderItem(@model)
+    app.router.navigate("/post/#{@model.get('id')}")
+    return false
 

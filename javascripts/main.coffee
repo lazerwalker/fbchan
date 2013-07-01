@@ -54,13 +54,14 @@ app.renderList = ->
       view = new app.views.PostList({model:list})
       view.render()
 
+app.renderItem = (item) ->
+  view = new app.views.Post
+    model: item
+    isDetailView: true
+  view.render()
+
 app.renderItemWithId = (id) ->
   app.showLoading()
   item = new app.Post(id: id)
   item.fetch
-    success: ->
-
-      view = new app.views.Post
-        model: item
-        isDetailView: true
-      view.render()
+    success: -> app.renderItem(item)
