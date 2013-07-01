@@ -44,6 +44,23 @@ app.loadTheme = (service) ->
     $.get "templates/#{service}/stylesheets.html", (data) =>
       $('head').append(data)
 
-
-
 app.loadTheme('4chan')
+
+app.renderList = ->
+  app.showLoading()
+  list = new app.PostList
+  list.fetch
+    success: ->
+      view = new app.views.PostList({model:list})
+      view.render()
+
+app.renderItemWithId = (id) ->
+  app.showLoading()
+  item = new app.Post(id: id)
+  item.fetch
+    success: ->
+
+      view = new app.views.Post
+        model: item
+        isDetailView: true
+      view.render()
