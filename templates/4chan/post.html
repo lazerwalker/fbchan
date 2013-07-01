@@ -4,7 +4,7 @@
       <div class="file">
         <div class="fileInfo">
           <span class="fileText">File:
-            <a href="#" target="_blank">{{uid}}.png
+            <a href="index.html?postId={{id}}" target="_blank">{{id}}.png
             </a>-()
             <span title="{{id}}">{{id}}
             </span>)
@@ -45,10 +45,10 @@
         {{message}}
       </blockquote>
     </div>
-    <span class="summary desktop">{{#hiddenContent}}{{hiddenCommentCount}} and {{hiddenLikeCount}} omitted. {{/hiddenContent}}Click
-      <a href="#" class="replylink">here
+    {{^isDetailView}}<span class="summary desktop">{{#hiddenContent}}{{hiddenCommentCount}} and {{hiddenLikeCount}} omitted. {{/hiddenContent}}Click
+      <a href="index.html?postId={{id}}" class="replylink">here
       </a> to view.
-    </span>
+    </span>{{/isDetailView}}
   </div>
   {{#commentsAndLikes}}{{{.}}}{{/commentsAndLikes}}
 </div>

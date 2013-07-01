@@ -1,4 +1,12 @@
 class app.Post extends Backbone.Model
+  sync: (method, model, options) ->
+    FB.api @get('id'), (data) =>
+      for key, value of data
+        @set(key, value)
+
+      console.log data
+      options.success(data.data)
+
   like: ->
     unless @get('likes')
       @set('likes', {data:[]})

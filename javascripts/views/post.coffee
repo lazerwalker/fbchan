@@ -1,5 +1,6 @@
 class app.views.Post extends Backbone.View
   avatar: -> "https://graph.facebook.com/#{@uid()}/picture"
+  id: -> @model.get('id')
   uid: -> @model.get('from')?['id']
   message: -> @model.get('message')
   name: -> @model.get('from')?.name
@@ -47,7 +48,7 @@ class app.views.Post extends Backbone.View
 
   commentsAndLikes: ->
     content = @comments().concat @likes()
-    content[0...3]
+    if @isDetailView then content else content[0...3]
 
   likeable: ->
     like = _(@model.get('likes')?['data']).find( (obj) -> obj.id is app.me?.id )
@@ -79,16 +80,28 @@ class app.views.Post extends Backbone.View
     else
       "#{likeCount - 3} likes"
 
-  initialize: ->
+  initialize: (options) ->
     @$el.on 'click', '.like', =>
       @model.like()
 
     @model.on 'change', =>
       @render()
 
+    for key, value of options
+      @[key] = value
+
   render: ->
     return if !@message()
 
     html = ich.post(@)
     @$el.html(html)
+    $('.dateTime').timeago()
+
+    if @isDetailView
+      console.log "HI!"
+      $parent = $("#content")
+      $parent.html('')
+      @$el.appendTo($parent)
+
+    return @$el
 

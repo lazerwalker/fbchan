@@ -20,6 +20,16 @@ app.showIntro = -> app.showStatic('intro')
 app.showStatic = (name) ->
   $("#content").html(ich[name]?())
 
+app.params = ->
+  unless params
+    setters = window.location.search[1..].split('&')
+    params = {}
+    for setter in setters
+      [key, value] = setter.split('=')
+      params[key] = value
+  params
+
+
 app.loadTheme = (service) ->
   for view in ['post', 'comment', 'like', 'loading', 'intro']
     networkCount++
