@@ -5,9 +5,11 @@ window.app = {
 networkCount = 0
 
 registerTemplate = (service, name) ->
-  $.get "templates/#{service}/#{name}.html", (data) ->
-    ich.addTemplate(name, data)
-    checkIfFinishedLoading()
+  $.ajax "templates/#{service}/#{name}.html",
+    success: (data) ->
+      ich.addTemplate(name, data)
+    complete: -> checkIfFinishedLoading()
+
 
 checkIfFinishedLoading = ->
   networkCount--
