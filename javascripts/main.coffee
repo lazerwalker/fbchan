@@ -15,7 +15,7 @@ checkIfFinishedLoading = ->
     $(document).trigger('templatesLoaded')
 
 app.loadTheme = (service) ->
-  for view in ['post', 'comment', 'like', 'loading', 'intro', 'inlineLoading']
+  for view in ['post', 'comment', 'like', 'loading', 'intro', 'inlineLoading', 'user']
     networkCount++
     registerTemplate(service, view)
 
@@ -23,9 +23,9 @@ app.loadTheme = (service) ->
   $.get "templates/#{service.toLowerCase()}/site.html", (data) =>
     ich.addTemplate 'site', data
     $("body").html(ich.site)
-    checkIfFinishedLoading()
 
     $.get "templates/#{service.toLowerCase()}/stylesheets.html", (data) =>
+      checkIfFinishedLoading()
       $('head').append(data)
 
   app.theme = service

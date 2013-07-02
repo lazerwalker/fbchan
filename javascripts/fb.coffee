@@ -7,6 +7,11 @@ $(document).on 'templatesLoaded', ->
         if Modernizr.localstorage
           localStorage['loggedIn'] = true
         app.me = new app.User()
+        app.me.view = new app.views.User(model: app.me)
+        app.me.fetch
+          success: ->
+            app.me.view.render()
+
         Backbone.history.start()
       else if Modernizr.localstorage and localStorage["loggedIn"]
         app.showLoading()
