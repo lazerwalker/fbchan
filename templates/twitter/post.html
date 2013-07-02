@@ -18,40 +18,21 @@
 
     </div>
 
-
-
-
     <p class="js-tweet-text tweet-text">{{#recipient}}{{mentionName}} {{/recipient}}{{message}}</p>
-
-
     <div class="stream-item-footer">
-
-
-
-      <div class="context">
-      </div>
-
-
-
       <a class="details with-icn js-details" href="#post/{{id}}">
-        <span class="details-icon js-icon-container">
-
-        </span>
+        <span class="details-icon js-icon-container"></span>
         <b>
-          <span class="expand-stream-item js-view-details">
-
+          {{^isDetailView}}<span class="expand-stream-item js-view-details">
             <span class="expand-action-wrapper">
               Expand
             </span>
-          </span>
-          <span class="collapse-stream-item js-hide-details">
+          </span>{{/isDetailView}}
+          {{#isDetailView}}<span class="collapse-stream-item js-hide-details">
             Collapse
-          </span>
+          </span>{{/isDetailView}}
         </b>
       </a>
-
-
-
 
       <ul class="tweet-actions js-actions">
         <li class="action-reply-container">
@@ -80,49 +61,11 @@
           </a>
           {{/likeable}}
         </li>
-
-        <li class="more-tweet-actions">
-          <div class="action-more-container">
-            <div class="dropdown">
-              <button type="button" class="btn-link with-icn dropdown-toggle">
-                <i class="sm-more"></i>
-                <b>More</b>
-              </button>
-              <ul class="dropdown-menu">
-                <li class="dropdown-caret">
-                  <span class="caret-outer"></span>
-                  <span class="caret-inner"></span>
-                </li>
-                <li class="share-via-email">
-                  <a class="js-share-via-email" href="#" data-nav="share_tweet">Share via email</a>
-                </li>
-                <li class="embed-link">
-                  <a class="js-embed-tweet" href="#" data-nav="embed_tweet">Embed Tweet</a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </li>
-
-
-
-
-
       </ul>
-
     </div>
-
 
     <div class="expanded-content js-tweet-details-dropdown">
-
-
-
     </div>
-
-
   </div>
 </div>
-
-
-
 </li>
