@@ -36,7 +36,7 @@ app.loadTheme = (service) ->
 
     $.get "templates/#{service.toLowerCase()}/stylesheets.html", (data) =>
       checkIfFinishedLoading()
-      $('head').append(data)
+      $('body').append(data)
 
   app.theme = service
 
