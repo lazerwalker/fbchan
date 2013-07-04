@@ -10,13 +10,18 @@ registerTemplate = (service, name) ->
       ich.addTemplate(name, data)
     complete: -> checkIfFinishedLoading()
 
-
 checkIfFinishedLoading = ->
   networkCount--
   if networkCount is 0
-    $(document).trigger('templatesLoaded')
+    app.list?.view.el = document.getElementById("content")
+    app.router.refresh()
 
 app.loadTheme = (service) ->
+  return unless service in ['Twitter', '4chan']
+
+  ich.clearAll()
+  $fbRoot = $("#fb-root")
+
   for view in ['post', 'comment', 'like', 'loading', 'intro', 'inlineLoading', 'user']
     networkCount++
     registerTemplate(service, view)
@@ -25,6 +30,9 @@ app.loadTheme = (service) ->
   $.get "templates/#{service.toLowerCase()}/site.html", (data) =>
     ich.addTemplate 'site', data
     $("body").html(ich.site)
+
+    # TODO: Can we just re-initialize FB or do something less horrendous?
+    $("body").append($fbRoot)
 
     $.get "templates/#{service.toLowerCase()}/stylesheets.html", (data) =>
       checkIfFinishedLoading()
@@ -74,4 +82,4 @@ app.renderItemWithId = (id) ->
   item.fetch
     success: -> app.renderItem(item)
 
-app.loadTheme('Twitter')
+app.loadTheme('4chan')

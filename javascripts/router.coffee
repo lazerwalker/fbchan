@@ -10,4 +10,9 @@ router = Backbone.Router.extend
   post: (post) ->
     app.renderItemWithId(post)
 
+  refresh: ->
+    currentRoute = Backbone.history.fragment
+    @navigate('not a valid route')
+    @navigate(currentRoute, {trigger: true})
+
 window.app.router = new router()
