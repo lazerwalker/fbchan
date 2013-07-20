@@ -5,6 +5,29 @@ class app.views.Post extends Backbone.View
 
   events: -> @sharedEvents
 
+  initialize: (options) ->
+    @model.on 'change', =>
+      @render()
+
+    for key, value of options
+      @[key] = value
+  render: ->
+    return if !@message()
+
+    if @isDetailView
+      $parent = $("#content")
+      $parent.html('')
+      @$el.appendTo($parent)
+
+    html = ich.post(@)
+    @$el.html(html)
+
+    $('.dateTime').timeago()
+
+    return @$el
+
+  # Presenter behavior
+  # TODO: Consider extracting out into a dedicated presenter object
   avatar: -> "https://graph.facebook.com/#{@uid()}/picture"
   id: -> @model.get('id')
   uid: -> @model.get('from')?['id']
@@ -59,27 +82,7 @@ class app.views.Post extends Backbone.View
     like = _(@model.get('likes')?['data']).find( (obj) -> obj.id is app.me?.id )
     return not like?
 
-  initialize: (options) ->
-    @model.on 'change', =>
-      @render()
-
-    for key, value of options
-      @[key] = value
-  render: ->
-    return if !@message()
-
-    if @isDetailView
-      $parent = $("#content")
-      $parent.html('')
-      @$el.appendTo($parent)
-
-    html = ich.post(@)
-    @$el.html(html)
-
-    $('.dateTime').timeago()
-
-    return @$el
-
+  # Event handlers
   clickLike: =>
     @model.like()
     return false
