@@ -17,7 +17,7 @@ checkIfFinishedLoading = ->
     app.router.refresh()
 
 app.loadTheme = (service) ->
-  return unless service in ['Twitter', '4chan']
+  return unless service in ['Twitter', '4chan', 'welcome']
 
   ich.clearAll()
   $fbRoot = $("#fb-root")
@@ -34,7 +34,8 @@ app.loadTheme = (service) ->
     # TODO: Can we just re-initialize FB or do something less horrendous?
     $("body").append($fbRoot)
 
-    new app.views.Buttons().render()
+    if service isnt 'welcome'
+      new app.views.Buttons().render()
 
     $.get "templates/#{service.toLowerCase()}/stylesheets.html", (data) =>
       checkIfFinishedLoading()
@@ -44,10 +45,11 @@ app.loadTheme = (service) ->
 
 app.showLoading = -> app.showStatic('loading')
 app.showPartialLoading = -> $("#content").prepend(ich.inlineLoading())
-app.showIntro = -> app.showStatic('intro')
-
 app.showStatic = (name) ->
   $("#content").html(ich[name]?())
+
+app.showIntro = ->
+  app.loadTheme('welcome')
 
 app.params = ->
   unless params
@@ -83,6 +85,3 @@ app.renderItemWithId = (id) ->
   item = new app.Post(id: id)
   item.fetch
     success: -> app.renderItem(item)
-
-$(document).ready ->
-  app.loadTheme('4chan')
