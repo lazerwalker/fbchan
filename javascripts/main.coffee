@@ -34,7 +34,7 @@ app.loadTheme = (service) ->
     # TODO: Can we just re-initialize FB or do something less horrendous?
     $("body").append($fbRoot)
 
-    new app.views.Toggle().render()
+    new app.views.Buttons().render()
 
     $.get "templates/#{service.toLowerCase()}/stylesheets.html", (data) =>
       checkIfFinishedLoading()

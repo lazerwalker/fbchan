@@ -1,8 +1,13 @@
-#toggle {
-  border: 2px outset buttonface;
-  font-size: 14px;
+#buttons {
   position: fixed;
   right: 5px;
   top: 5px;
   z-index: 9999;
+}
+
+#buttons button {
+  border: 2px outset buttonface;
+  font-size: 14px;
+
+  float: right;
 }

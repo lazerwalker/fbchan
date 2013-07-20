@@ -16,4 +16,3 @@ class app.views.Toggle extends Backbone.View
 
   render: ->
     @$el.html("Switch to #{@otherTheme()}")
-      .appendTo("body")
