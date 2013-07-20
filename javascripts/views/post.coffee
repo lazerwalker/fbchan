@@ -32,7 +32,7 @@ class app.views.Post extends Backbone.View
 
   comments: ->
     commentObj = @model.get('comments')
-    unless commentObj.count > 0 and commentObj?.data
+    unless commentObj and commentObj.count > 0 and commentObj.data
       return []
 
     comments = []
