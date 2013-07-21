@@ -6,5 +6,4 @@ class app.PostList extends Backbone.Collection
 
   sync: (method, model, options) ->
     FB.api '/me/home', (data) ->
-      console.log data
       options.success(data.data)

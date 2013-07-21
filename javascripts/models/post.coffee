@@ -4,7 +4,6 @@ class app.Post extends Backbone.Model
       for key, value of data
         @set(key, value)
 
-      console.log data
       options.success(data.data)
 
   like: ->

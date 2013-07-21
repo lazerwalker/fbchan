@@ -19,7 +19,6 @@
 
     PostList.prototype.sync = function(method, model, options) {
       return FB.api('/me/home', function(data) {
-        console.log(data);
         return options.success(data.data);
       });
     };

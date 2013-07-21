@@ -19,7 +19,6 @@
           value = data[key];
           _this.set(key, value);
         }
-        console.log(data);
         return options.success(data.data);
       });
     };
