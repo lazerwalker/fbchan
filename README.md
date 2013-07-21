@@ -11,8 +11,10 @@ You can check out a live copy of FBchan at <http://lazerwalker.com/fbchan>.
 # Running your own instance on GitHub Pages
 1. Fork this codebase on GitHub.
 2. Set up a Facebook application at <https://developers.facebook.com/apps>
-2. In line 23 of javascripts/fb.coffee, replace the app ID with the app ID for your newly created app.
-2. Your copy of FBchan should be live at http://<your-github-username>.github.com/fbchan
+3. In line 23 of javascripts/fb.coffee, replace the app ID with the app ID for your newly created app.
+4. At the bottom of `index.html`, either remove the Google Analytics tracking code
+or set it to your own analytics ID.
+5. Your copy of FBchan should be live at http://<your-github-username>.github.com/fbchan
 
 
 # Adding new themes
