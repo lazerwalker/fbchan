@@ -40,7 +40,7 @@ class app.views.Post extends Backbone.View
     if pic?
       pic.replace(/_[a-z]\.jpg$/, '_n.jpg')
 
-  commentLink: -> @model.get('actions')[0].link
+  commentLink: -> @model.get('actions')?[0].link
 
   link: ->
     if @model.get('link')

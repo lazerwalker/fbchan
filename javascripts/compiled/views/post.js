@@ -94,7 +94,8 @@
     };
 
     Post.prototype.commentLink = function() {
-      return this.model.get('actions')[0].link;
+      var _ref;
+      return (_ref = this.model.get('actions')) != null ? _ref[0].link : void 0;
     };
 
     Post.prototype.link = function() {
