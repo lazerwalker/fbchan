@@ -14,7 +14,6 @@ window.fbAsyncInit = ->
       Backbone.history.start()
     else if Modernizr.localstorage and localStorage["loggedIn"]
       app.loadTheme('4chan')
-      app.showLoading()
       FB.login()
     else
       app.showIntro()

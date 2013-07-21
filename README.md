@@ -22,7 +22,6 @@ If you want to add a new theme, it's easy.
 2. In main.coffee, line 20 specifies a list of valid templates. Add the name of your new templates folder to that array
 3. There are a number of HTML template files you can create inside the root of your new template directory. All are optional (if you don't want to include a user panel, etc) and will accept [Mustache](http://mustache.github.io/) templates:
 	* site.html: The body of the page
-	* stylesheets.html: A series of <link> tags to include any stylesheets you may want to use
 	* post.html: A news stream item (passed in a Post model)
 	* comment.html: A comment on a news stream item (passed in a Comment model)
 	* like.html: A like on a news stream item (passed in a Like model)

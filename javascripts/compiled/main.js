@@ -31,19 +31,17 @@
   };
 
   app.loadTheme = function(service) {
-    var $fbRoot, view, _i, _len, _ref,
+    var $fbRoot, view, _i, _len, _ref, _results,
       _this = this;
     if (service !== 'Twitter' && service !== '4chan' && service !== 'welcome') {
       return;
     }
+    if (service === app.theme) {
+      return;
+    }
     ich.clearAll();
     $fbRoot = $("#fb-root");
-    _ref = ['post', 'comment', 'like', 'loading', 'inlineLoading', 'user'];
-    for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-      view = _ref[_i];
-      networkCount++;
-      registerTemplate(service, view);
-    }
+    app.theme = service;
     networkCount++;
     $.get("templates/" + (service.toLowerCase()) + "/site.html", function(data) {
       ich.addTemplate('site', data);
@@ -52,12 +50,17 @@
       if (service !== 'welcome') {
         new app.views.Buttons().render();
       }
-      return $.get("templates/" + (service.toLowerCase()) + "/stylesheets.html", function(data) {
-        checkIfFinishedLoading();
-        return $('body').append(data);
-      });
+      app.showLoading();
+      return checkIfFinishedLoading();
     });
-    return app.theme = service;
+    _ref = ['post', 'comment', 'like', 'loading', 'inlineLoading', 'user'];
+    _results = [];
+    for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+      view = _ref[_i];
+      networkCount++;
+      _results.push(registerTemplate(service, view));
+    }
+    return _results;
   };
 
   app.showLoading = function() {

@@ -18,13 +18,11 @@ checkIfFinishedLoading = ->
 
 app.loadTheme = (service) ->
   return unless service in ['Twitter', '4chan', 'welcome']
+  return if service is app.theme
 
   ich.clearAll()
   $fbRoot = $("#fb-root")
-
-  for view in ['post', 'comment', 'like', 'loading', 'inlineLoading', 'user']
-    networkCount++
-    registerTemplate(service, view)
+  app.theme = service
 
   networkCount++
   $.get "templates/#{service.toLowerCase()}/site.html", (data) =>
@@ -37,11 +35,12 @@ app.loadTheme = (service) ->
     if service isnt 'welcome'
       new app.views.Buttons().render()
 
-    $.get "templates/#{service.toLowerCase()}/stylesheets.html", (data) =>
-      checkIfFinishedLoading()
-      $('body').append(data)
+    app.showLoading()
+    checkIfFinishedLoading()
 
-  app.theme = service
+  for view in ['post', 'comment', 'like', 'loading', 'inlineLoading', 'user']
+    networkCount++
+    registerTemplate(service, view)
 
 app.showLoading = -> app.showStatic('loading')
 app.showPartialLoading = -> $("#content").prepend(ich.inlineLoading())

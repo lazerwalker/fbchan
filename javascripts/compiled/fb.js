@@ -21,7 +21,6 @@
         return Backbone.history.start();
       } else if (Modernizr.localstorage && localStorage["loggedIn"]) {
         app.loadTheme('4chan');
-        app.showLoading();
         return FB.login();
       } else {
         return app.showIntro();
