@@ -31,29 +31,17 @@ body {
 
   font-size: 20px;
 
-  border-bottom-color: rgb(44, 81, 21);
-  border-bottom-left-radius: 5px;
-  border-bottom-right-radius: 5px;
-  border-bottom-style: solid;
-  border-bottom-width: 0.9090908765792847px;
   border-image-outset: 0px;
   border-image-repeat: stretch;
   border-image-slice: 100%;
   border-image-source: none;
   border-image-width: 1;
-  border-left-color: rgb(59, 110, 34);
-  border-left-style: solid;
-  border-left-width: 0.9090908765792847px;
-  border-right-color: rgb(59, 110, 34);
-  border-right-style: solid;
-  border-right-width: 0.9090908765792847px;
-  border-top-color: rgb(59, 110, 34);
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
-  border-top-style: solid;
-  border-top-width: 0.9090908765792847px;
-  box-shadow: rgb(164, 227, 136) 0px 0.9090908765792847px 0.9090908765792847px 0px inset;
-  -webkit-box-shadow: rgb(164, 227, 136) 0px 0.9090908765792847px 0.9090908765792847px 0px inset;
+  border-color: #3b6e22 #3b6e22 #2c5115;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 5px;
+  box-shadow: #a4e388 0px 1px 1px 0px inset;
+  -webkit-box-shadow: #a4e388 0px 1px 1px 0px inset;
   box-sizing: border-box;
   min-width: 194px;
 
