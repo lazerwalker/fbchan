@@ -9,7 +9,7 @@
   networkCount = 0;
 
   registerTemplate = function(service, name) {
-    return $.ajax("templates/" + service + "/" + name + ".html", {
+    return $.ajax("templates/" + (service.toLowerCase()) + "/" + name + ".html", {
       success: function(data) {
         return ich.addTemplate(name, data);
       },
@@ -38,7 +38,7 @@
     }
     ich.clearAll();
     $fbRoot = $("#fb-root");
-    _ref = ['post', 'comment', 'like', 'loading', 'intro', 'inlineLoading', 'user'];
+    _ref = ['post', 'comment', 'like', 'loading', 'inlineLoading', 'user'];
     for (_i = 0, _len = _ref.length; _i < _len; _i++) {
       view = _ref[_i];
       networkCount++;

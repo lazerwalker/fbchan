@@ -5,7 +5,7 @@ window.app = {
 networkCount = 0
 
 registerTemplate = (service, name) ->
-  $.ajax "templates/#{service}/#{name}.html",
+  $.ajax "templates/#{service.toLowerCase()}/#{name}.html",
     success: (data) ->
       ich.addTemplate(name, data)
     complete: -> checkIfFinishedLoading()
@@ -22,7 +22,7 @@ app.loadTheme = (service) ->
   ich.clearAll()
   $fbRoot = $("#fb-root")
 
-  for view in ['post', 'comment', 'like', 'loading', 'intro', 'inlineLoading', 'user']
+  for view in ['post', 'comment', 'like', 'loading', 'inlineLoading', 'user']
     networkCount++
     registerTemplate(service, view)
 
